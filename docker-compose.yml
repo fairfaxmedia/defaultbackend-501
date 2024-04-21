@@ -1,0 +1,6 @@
+services:
+  server:
+    build: .
+    image: fairfaxmedia/defaultbackend-501
+    ports:
+      - 8080:8080

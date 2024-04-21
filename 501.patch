@@ -1,0 +1,31 @@
+--- server.go	2024-04-22 09:05:43
++++ server-501.go	2020-10-14 10:50:08
+@@ -14,7 +14,7 @@
+ limitations under the License.
+ */
+ 
+-// A webserver that only serves a 404 page. Used as a default backend.
++// A webserver that only serves a 501 page. Used as a default backend.
+ package main
+ 
+ import (
+@@ -30,7 +30,7 @@
+ 
+ func main() {
+ 	// command line arguments
+-	port := flag.Int("port", 8080, "Port number to serve default backend 404 page.")
++	port := flag.Int("port", 8080, "Port number to serve default backend 501 page.")
+ 	timeout := flag.Duration("timeout", 5*time.Second, "Time in seconds to wait before forcefully terminating the server.")
+ 
+ 	flag.Parse()
+@@ -76,8 +76,8 @@
+ 		fmt.Fprint(w, "ok")
+ 	})
+ 	s.mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+-		w.WriteHeader(http.StatusNotFound)
+-		fmt.Fprint(w, "default backend - 404")
++		w.WriteHeader(http.StatusNotImplemented)
++		fmt.Fprint(w, "default backend - 501")
+ 	})
+ 	return s
+ }
